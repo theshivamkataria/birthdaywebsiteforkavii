@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Kavita 💙</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ===============================
+   EDIT SECTION
+   Change friendship date below in JS
+   Replace image paths below:
+   photo1.jpg = friendship selfie
+   photo2.jpg = portrait
+   photo3.jpg = balcony photo
+   Replace music.mp3 with your song
+================================ */
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+font-family:Poppins,sans-serif;
+background:linear-gradient(135deg,#dbeafe,#fbcfe8,#e9d5ff);
+overflow-x:hidden;
+color:#333;
+}
+
+.popup{
+position:fixed;
+inset:0;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#93c5fd,#c4b5fd);
+z-index:9999;
+}
+.popup-box{
+background:rgba(255,255,255,.2);
+backdrop-filter:blur(15px);
+padding:30px;
+border-radius:25px;
+text-align:center;
+width:min(90%,450px);
+color:white;
+}
+.popup input{
+padding:12px;
+margin-top:15px;
+width:100%;
+border:none;
+border-radius:12px;
+}
+.popup button{
+margin-top:15px;
+padding:12px 20px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+}
+.hidden{display:none}
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:40px;
+position:relative;
+}
+.glass{
+background:rgba(255,255,255,.25);
+backdrop-filter:blur(12px);
+padding:30px;
+border-radius:25px;
+box-shadow:0 8px 30px rgba(0,0,0,.12);
+}
+.hero img{
+width:220px;height:220px;
+object-fit:cover;
+border-radius:50%;
+border:6px solid white;
+}
+h1{
+font-family:"Dancing Script",cursive;
+font-size:4rem;
+}
+.typewriter{
+font-size:1.2rem;
+margin-top:10px;
+min-height:40px;
+}
+section{padding:70px 20px}
+.title{
+text-align:center;
+font-family:"Dancing Script";
+font-size:3rem;
+margin-bottom:25px;
+}
+.card{
+max-width:900px;
+margin:auto;
+padding:25px;
+}
+.slideshow{
+max-width:800px;
+margin:auto;
+position:relative;
+}
+.slide{
+display:none;
+width:100%;
+border-radius:20px;
+}
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+max-width:1100px;
+margin:auto;
+}
+.gallery img{
+width:100%;
+height:320px;
+object-fit:cover;
+border-radius:20px;
+transition:.4s;
+}
+.gallery img:hover{
+transform:translateY(-8px) scale(1.03);
+}
+.counter{
+font-size:2rem;
+text-align:center;
+font-weight:600;
+}
+.music-btn{
+position:fixed;
+right:20px;
+bottom:20px;
+z-index:100;
+padding:15px;
+border:none;
+border-radius:50%;
+cursor:pointer;
+}
+.heart{
+position:fixed;
+bottom:-20px;
+animation:float 8s linear infinite;
+opacity:.6;
+}
+@keyframes float{
+from{transform:translateY(0)}
+to{transform:translateY(-120vh)}
+}
+.reason-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+max-width:1000px;
+margin:auto;
+}
+.reason{
+padding:20px;
+}
+footer{
+text-align:center;
+padding:30px;
+}
+</style>
+</head>
+<body>
+
+<div class="popup" id="gate">
+<div class="popup-box">
+<h2>Before entering your birthday surprise, tell me our special date ✨</h2>
+<input id="dateInput" placeholder="DD/MM/YY">
+<button onclick="checkDate()">Unlock 💙</button>
+<p id="msg"></p>
+</div>
+</div>
+
+<audio id="music" loop>
+<!-- PLACE YOUR MUSIC FILE HERE -->
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">🎵</button>
+
+<div id="site" style="display:none">
+
+<section class="hero">
+<div class="glass">
+<!-- HERO PHOTO -->
+<img src="photo4.jpeg" alt="Kavita">
+<h1>Happy Birthday Kavita ✨</h1>
+<div class="typewriter" id="type"></div>
+</div>
+</section>
+
+<section>
+<h2 class="title">A Little Birthday Message 💌</h2>
+<div class="glass card">
+Kavita, today is all about celebrating you. Thank you for the memories, the laughter, the conversations, and the moments that turned into stories worth remembering. May this year bring happiness, success, peace, and countless beautiful memories.
+</div>
+</section>
+
+<section>
+<h2 class="title">Our Friendship Counter ⏳</h2>
+<div class="counter" id="counter"></div>
+</section>
+
+<section>
+<h2 class="title">Memory Slideshow 📸</h2>
+<div class="slideshow glass">
+<img class="slide" src="photo2.jpeg">
+<img class="slide" src="photo1.jpeg">
+<img class="slide" src="photo3.jpeg">
+<img class="slide" src="photo4.jpeg">
+<img class="slide" src="photo5.jpeg">
+<img class="slide" src="photo6.jpeg">
+<img class="slide" src="photo7.jpeg">
+<img class="slide" src="photo8.jpeg">
+<img class="slide" src="photo9.jpeg">
+<img class="slide" src="photo10.jpeg">
+<img class="slide" src="photo11.jpeg">
+
+</div>
+</section>
+
+<section>
+<h2 class="title">Memory Highlights 💙</h2>
+<div class="reason-grid">
+<div class="glass reason">
+<h3>📷 A Special Memory</h3>
+<p>Some memories don't need perfect pictures, they just need the right people.</p>
+</div>
+<div class="glass reason">
+<h3>✨ Beautiful Moments</h3>
+<p>Whenever we are together 💙</p>
+</div>
+<div class="glass reason">
+<h3>🌸 Happiness</h3>
+<p>Happiness looks beautiful when it comes naturally.</p>
+</div>
+</div>
+</section>
+
+<section>
+<h2 class="title">Why you are so amazing... 🌷</h2>
+<div class="reason-grid">
+<div class="glass reason">💙 Because you have me yaar</div>
+<div class="glass reason">✨ To be honest, no reason needed</div>
+<div class="glass reason">🌸 You're simply amazing</div>
+<div class="glass reason">💗 Dil ki acchi hai.. </div>
+<div class="glass reason">🌈 And that's enough</div>
+
+</div>
+</section>
+
+<section>
+<h2 class="title">Secret Letter 🫠</h2>
+<div class="glass card">
+No matter how much time passes, how far you are from me , I'm and I'll always be yours ... Thank you for being part of my memories and for making ordinary days feel brighter and make me blush throughout the day... I hope this birthday brings you endless reasons to smile and promise me we will celebrates each others birthday till we are alive...So for now Happy Birthday KAVITA... Enjoy your day, darling ❤️<br><br>💌 P.S. If you like it and want to give me some present, kisses and hugs are welcomed, hehe 🫣
+</div>
+</section>
+
+<section>
+<h2 class="title">Photo Gallery 📸</h2>
+<div class="gallery">
+<!-- GALLERY PHOTOS -->
+<img src="photo1.jpeg">
+<img src="photo2.jpeg">
+<img src="photo3.jpeg">
+<img src="photo4.jpeg">
+<img src="photo8.jpeg">
+</div>
+</section>
+
+<footer>
+Made with 💙 for Kavita
+</footer>
+
+</div>
+
+<script>
+function checkDate(){
+const val=document.getElementById("dateInput").value.trim();
+if(val==="12/08/22"){
+document.getElementById("msg").innerHTML="🥺 You still remembered!!<br>I knew you would ❤️";
+setTimeout(()=>{
+document.getElementById("gate").style.display="none";
+document.getElementById("site").style.display="block";
+confettiBurst();
+},2200);
+}else{
+document.getElementById("msg").innerText="Hmm... that's not the date I'm thinking of 💙";
+}
+}
+
+const text="Welcome to a small collection of memories, smiles and birthday wishes... and now click on that music icon in corner";
+let i=0;
+function type(){
+if(i<text.length){
+document.getElementById("type").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,45);
+}
+}
+type();
+
+/* FRIENDSHIP DATE - EDIT HERE */
+const start=new Date("2022-08-12");
+setInterval(()=>{
+const now=new Date();
+const diff=Math.floor((now-start)/(1000*60*60*24));
+document.getElementById("counter").innerText="4 Years of Friendship 💙";
+},1000);
+
+let slide=0;
+function showSlides(){
+let s=document.getElementsByClassName("slide");
+for(let i=0;i<s.length;i++)s[i].style.display="none";
+slide++;
+if(slide>s.length)slide=1;
+s[slide-1].style.display="block";
+setTimeout(showSlides,3000);
+}
+showSlides();
+
+function toggleMusic(){
+const m=document.getElementById("music");
+if(m.paused)m.play(); else m.pause();
+}
+
+function createHeart(){
+const h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💙";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(Math.random()*20+15)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),8000);
+}
+setInterval(createHeart,600);
+
+function confettiBurst(){
+for(let i=0;i<100;i++){
+let c=document.createElement("div");
+c.style.position="fixed";
+c.style.width="8px";
+c.style.height="8px";
+c.style.left=Math.random()*100+"vw";
+c.style.top=Math.random()*100+"vh";
+c.style.background=["#93c5fd","#fbcfe8","#e9d5ff"][Math.floor(Math.random()*3)];
+c.style.zIndex=999;
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),3000);
+}
+}
+</script>
+
+</body>
+</html>
